@@ -1,0 +1,13 @@
+[Unit]
+Description=Start user script at boot
+After=network.target
+
+[Service]
+ExecStart=%h/Music/start.sh
+WorkingDirectory=%h/Music
+StandardOutput=inherit
+StandardError=inherit
+Restart=always
+
+[Install]
+WantedBy=default.target
