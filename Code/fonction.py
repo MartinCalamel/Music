@@ -2,7 +2,7 @@
 Author: Martin Calamel
 Created: 2025-03-15
 Description: fonction pour recuperer les videos youtubes
-TODO: 
+TODO: documentation and clean
 """
 
 # importation des modules
@@ -14,9 +14,18 @@ import yt_dlp
 
 
 
-def youtube_search(query:str):
+def youtube_search(query : str)-> BeautifulSoup:
     """
+    # youtube_search
     fonction pour faire la requête de recherche YouTube
+    ## input
+    * query (str) intitulée de la recherche
+    ## output
+    * soup (BeautifulSoup) contenue de la page de résultats
+    ## Fonctionnement
+    -> formatage de l'url  
+    -> requête vers YouTube  
+    -> recuperation de la soup
     """
     query = '+'.join(query.split())
     
@@ -33,8 +42,19 @@ def youtube_search(query:str):
     soup = BeautifulSoup(response.text, 'html.parser')
     return soup
 
-def extract_data_from_soup(soup):
-    """fonction pour récupperer les infos sur les vidéo a partir de la soup"""
+def extract_data_from_soup(soup : BeautifulSoup) -> list:
+    """
+    # extract_data_from_soup
+    fonction pour récupérer les infos sur les vidéo a partir de la soup
+    ## input
+    * soup (BeautifulSoup) soup de la page de résultat
+    ## output
+    * video_info (list) liste des IDs et Titre des vidéos
+    ## fonctionnement
+    -> récupération de `ytInitialData`  
+    -> filtrage des sorts  
+    -> renvoie des infos
+    """
     soup = str(soup)
     match = re.search(r'var ytInitialData = ({.*?});', soup, re.DOTALL)
     if match:
@@ -50,26 +70,56 @@ def extract_data_from_soup(soup):
     else:
         print("Variable ytInitialData non trouvée.")
 
-def make_choice(video,bot = False):
+def make_choice(video : list ,bot : bool = False):
     """
+    # make_choice
     fonction pour proposer les choix de video retourne l'id de la video choisie
+    ## input
+    * video (list) liste de ids et titres des videos
+    * bot (bool) sélection de si c'est le bot qui demande
+    ## output
+    * msg (str) message que doit envoyer le bot si bot est true
+    * video (list) ID et titre de la vidéo choisie
+    ## fonctionnement
+    -> on fait le message  
+    -> si bot on retourne le message  
+    -> sinon on retourne le choix de l'utilisateur
     """
-    if bot:
-        msg = ""
-        msg += "choisissez la video que vous voulez télécharger\n"
-        for i in range(5):
-            msg += f'[ {i} ] {video[i][1]}\n'
-        return msg
-    print("choisissez la video que vous voulez télécharger")
+    
+    msg = "choisissez la video que vous voulez télécharger\n"
     for i in range(5):
-        print(f'[ {i} ] {video[i][1]}')
+        msg += f'[ {i} ] {video[i][1]}\n'
+    if bot:
+        return msg
+    
+    print(msg)
     return video[int(input(">>> "))][0]
 
 def make_url(id):
+    """
+    # make_url
+    fonction pour former l'url de la video que l'utilisateur veut
+    # input
+    * id (str) id de la vidéo
+    # output
+    * (str) url de la vidéo
+    """
     return f'https://youtu.be/{id}'
 
 
 def download(url):
+    """
+    # download
+    fonction pour le téléchargement de la vidéo
+    ## input
+    * url (str) url de la vidéo a télécharger
+    ## output
+    * file_name (str) nom du fichier
+    ## fonctionnement
+    -> vérifie le titre de la vidéo  
+    -> le change si besoin  
+    -> télécharge la vidéo 
+    """
     def clean_title(title):
         # Remplacer les caractères non valides par '-'
         return re.sub(r'[⧸/\\]', '-', title)
@@ -97,6 +147,10 @@ def download(url):
 
 
 def main():
+    """
+    # main
+    fonction de test principal
+    """
     query = input("Entrez le terme de recherche (ex: 'Python tutorial') : ")
 
     # Rechercher les vidéos
