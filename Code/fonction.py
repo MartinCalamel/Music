@@ -11,7 +11,6 @@ import requests
 import re
 import json
 import yt_dlp
-import os
 
 
 
