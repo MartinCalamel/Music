@@ -13,7 +13,7 @@ Pour le faire fonctionner il est nécessaire d'avoir python et d'installer les p
 pip install -r requirement.txt
 ``` 
 
-Il faut également un token de bot discord stocker dans un fichier `Code/token.txt`
+Il faut également un token de bot discord stocker dans un fichier `Code/token.txt` a la place de *{bot_token}*
 
 ## usage
 Pour le lancer entrez la commande :
