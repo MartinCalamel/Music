@@ -1,19 +1,20 @@
 import discord
 from discord.ext import commands
 import os
-
 from fonction import extract_data_from_soup, youtube_search,make_choice, make_url, download
 
 #-------------------- on récupère le token
 with open("./code/token.txt","r",encoding="utf-8") as fichier :
     token= fichier.readline()
 
-
+# on met les droit de lire les messages
 intents = discord.Intents.default()
-intents.messages = True  # Utilisez cet intent pour lire les messages
+intents.messages = True  
 
+# initialisation du bot
 bot = commands.Bot(command_prefix='!', intents=intents)
 
+# fonction pour que le bot envoie un message quand il est connecté
 @bot.event
 async def on_ready():
     print(f'Bot connecté en tant que {bot.user}')
@@ -21,6 +22,7 @@ async def on_ready():
     await bot.get_channel(channel.id).send("Bonjour à tous !")
 
 
+# Commande pour télécharger la musique
 @bot.command(name='music')
 async def music(ctx, *, titre: str):
     soupe = youtube_search(titre)
@@ -41,6 +43,7 @@ async def music(ctx, *, titre: str):
         await ctx.send("Le deuxième nombre n'est pas valide. Veuillez entrer un nombre valide.")
     except TimeoutError:
         await ctx.send("Temps écoulé. Veuillez réessayer la commande.")
+
 
 if __name__ == '__main__':
     bot.run(token)
