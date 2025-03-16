@@ -16,14 +16,7 @@ Pour le faire fonctionner lancez ce script.
 Il faut également un token de bot discord stocker dans un fichier `Code/token.txt` a la place de *{bot_token}*
 
 ## usage
-Pour le lancer entrez la commande :
-```
-python Code/bot.py
-
-# ou bien 
-python3 Code/bot.py
-```
-Le bot se connectera a discord.  
+Une fois installer le bot se connectera a discord. il se relancera a chaque fois que le system est redémarré.   
 Pour communiquer avec lui il y a une unique commande :  
 `!music titre de la musique`  
 Après cela il vous enverra un message afin de préciser votre demande via 5 suggestion il faut lui renvoyer le numéro voulue dans les 30 secondes.  
