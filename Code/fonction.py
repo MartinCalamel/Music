@@ -68,15 +68,6 @@ def make_choice(video,bot = False):
 def make_url(id):
     return f'https://youtu.be/{id}'
 
-# def download(url):
-#     ydl_opts = {
-#         'format': 'm4a/bestaudio',  # Télécharge l'audio au format M4A
-#         'outtmpl': './music/%(title)s.%(ext)s',  # Nom du fichier = titre de la vidéo
-#     }
-
-#     with yt_dlp.YoutubeDL(ydl_opts) as ydl:
-#         ydl.download([url])
-
 
 def download(url):
     def clean_title(title):
