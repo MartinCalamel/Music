@@ -8,9 +8,9 @@ Ou en ligne de commande :
 git clone https://github.com/MartinCalamel/Music.git
 ```
 
-Pour le faire fonctionner il est nécessaire d'avoir python et d'installer les package requis.
+Pour le faire fonctionner lancez ce script.
 ```
-pip install -r requirement.txt
+./install.sh
 ``` 
 
 Il faut également un token de bot discord stocker dans un fichier `Code/token.txt` a la place de *{bot_token}*
