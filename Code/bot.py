@@ -1,3 +1,12 @@
+"""
+Author: Martin Calamel
+Created: 2025-03-16
+Description: bot pour télécharger de la musique
+TODO: 
+"""
+
+
+
 import discord
 from discord.ext import commands
 import os
