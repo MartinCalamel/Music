@@ -93,7 +93,7 @@ def make_choice(video : list ,bot : bool = False):
         return msg
     
     print(msg)
-    return video[int(input(">>> "))][0]
+    return video[int(input(">>> "))]
 
 def make_url(id):
     """
@@ -107,7 +107,7 @@ def make_url(id):
     return f'https://youtu.be/{id}'
 
 
-def download(url):
+def download(url : str, titre : str) -> None:
     """
     # download
     fonction pour le téléchargement de la vidéo
@@ -125,22 +125,19 @@ def download(url):
         return re.sub(r'[⧸/\\]', '-', title)
 
     with yt_dlp.YoutubeDL() as ydl:
-        info_dict = ydl.extract_info(url, download=False)
-        video_title = info_dict.get('title', None)
         video_extension = "m4a"
-        
+        video_title = clean_title(titre)
         if video_title:
             # Nettoyer le titre avant de définir le nom du fichier
-            safe_title = clean_title(video_title)
             ydl_opts = {
                 'format': 'm4a/bestaudio',  # Télécharge l'audio au format M4A
-                'outtmpl': f'./music/{safe_title}.%(ext)s',  # Utilisation du titre nettoyé
+                'outtmpl': f'./music/{video_title}.%(ext)s',  # Utilisation du titre nettoyé
             }
             
             with yt_dlp.YoutubeDL(ydl_opts) as ydl:
                 ydl.download([url])
             
-            new_file_name = f'./music/{safe_title}.{video_extension}'
+            new_file_name = f'./music/{video_title}.{video_extension}'
             return new_file_name
         else:
             return None
@@ -155,9 +152,9 @@ def main():
 
     # Rechercher les vidéos
     soup = youtube_search(query)
-    video_info = extract_data_from_soup(soup)
-    video_id = make_choice(video_info)
-    download(make_url(video_id))
+    videos_info = extract_data_from_soup(soup)
+    video_info = make_choice(videos_info)
+    download(make_url(video_info[0]),video_info[1])
 
 if __name__ == '__main__':
     main()
