@@ -45,7 +45,7 @@ async def music(ctx, *, titre: str):
     try:
         msg = await bot.wait_for('message', check=check, timeout=30.0)
         nombre = int(msg.content)
-        file_path = download(make_url(video_info[nombre][0]))
+        file_path = download(make_url(video_info[nombre][0]),video_info[nombre][1])
         await ctx.send("Voici ton fichier audio :", file=discord.File(file_path))
         os.remove(file_path)
     except ValueError:
