@@ -1,2 +1,3 @@
 #!/bin/bash
-python Code/bot.py
+source .venv/bin/activate
+python3 Code/bot.py
