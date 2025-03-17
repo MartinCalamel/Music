@@ -13,7 +13,7 @@ import os
 from fonction import extract_data_from_soup, youtube_search,make_choice, make_url, download
 
 #-------------------- on récupère le token
-with open("./code/token.txt","r",encoding="utf-8") as fichier :
+with open("token.txt","r",encoding="utf-8") as fichier :
     token= fichier.readline()
 
 # on met les droit de lire les messages
