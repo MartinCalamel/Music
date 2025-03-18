@@ -10,7 +10,8 @@ git clone https://github.com/MartinCalamel/Music.git
 
 Pour le faire fonctionner lancez ce script.
 ```
-./install.sh
+docker build -t nom_de_image:version .
+docker docker run --rm -e TOKEN=votre_token nom_de_image:version
 ``` 
 
 Il faut également un token de bot discord stocker dans un fichier `Code/token.txt` a la place de *{bot_token}*

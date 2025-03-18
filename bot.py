@@ -13,8 +13,8 @@ import os
 from fonction import extract_data_from_soup, youtube_search,make_choice, make_url, download
 
 #-------------------- on récupère le token
-with open("token.txt","r",encoding="utf-8") as fichier :
-    token= fichier.readline()
+
+token= os.environ["TOKEN"]
 
 # on met les droit de lire les messages
 intents = discord.Intents.default()
