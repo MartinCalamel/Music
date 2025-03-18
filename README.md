@@ -14,8 +14,6 @@ docker build -t nom_de_image:version .
 docker docker run --rm -e TOKEN=votre_token nom_de_image:version
 ``` 
 
-Il faut également un token de bot discord stocker dans un fichier `Code/token.txt` a la place de *{bot_token}*
-
 ## usage
 Une fois installer le bot se connectera a discord. il se relancera a chaque fois que le system est redémarré.   
 Pour communiquer avec lui il y a une unique commande :  
