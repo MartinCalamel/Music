@@ -13,7 +13,13 @@ Pour le faire fonctionner il est nécessaire d'avoir python et d'installer les p
 pip install -r requirement.txt
 ``` 
 
-Il faut également un token de bot discord stocker dans un fichier `Code/token.txt`
+Il faut également un token de bot discord stocker dans un fichier `Code/token.txt`  
+  
+Une autre possibilité est d'utiliser docker : 
+```
+docker pull martincalamel/music:0.1
+docker run -e TOKEN="votre_tocken" docker.io/martincalamel/music:0.1
+```
 
 ## usage
 Pour le lancer entrez la commande :
